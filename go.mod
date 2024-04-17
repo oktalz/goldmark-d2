@@ -1,6 +1,7 @@
-module github.com/FurqanSoftware/goldmark-d2
+//module github.com/FurqanSoftware/goldmark-d2
+module github.com/oktalz/goldmark-d2
 
-go 1.19
+go 1.22
 
 require (
 	cdr.dev/slog v1.4.2 // indirect; https://github.com/terrastruct/d2/issues/1524
