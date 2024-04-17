@@ -68,7 +68,8 @@ func (r *HTMLRenderer) Render(w util.BufWriter, src []byte, node ast.Node, enter
 	}
 
 	renderOpts := &d2svg.RenderOpts{
-		Pad:    ptr(int64(d2svg.DEFAULT_PADDING)),
+		//Pad:    ptr(int64(d2svg.DEFAULT_PADDING)),
+		Pad:    ptr(int64(0)),
 		Sketch: &r.Sketch,
 	}
 	if r.ThemeID != nil {
