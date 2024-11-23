@@ -4,9 +4,8 @@ import (
 	"bytes"
 	"context"
 	"io"
+	"log/slog"
 
-	"cdr.dev/slog"
-	"cdr.dev/slog/sloggers/sloghuman"
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/renderer"
 	"github.com/yuin/goldmark/util"
@@ -68,7 +67,7 @@ func (r *HTMLRenderer) Render(w util.BufWriter, src []byte, node ast.Node, enter
 	}
 
 	renderOpts := &d2svg.RenderOpts{
-		//Pad:    ptr(int64(d2svg.DEFAULT_PADDING)),
+		// Pad:    ptr(int64(d2svg.DEFAULT_PADDING)),
 		Pad:    ptr(int64(0)),
 		Sketch: &r.Sketch,
 	}
@@ -79,7 +78,7 @@ func (r *HTMLRenderer) Render(w util.BufWriter, src []byte, node ast.Node, enter
 	}
 
 	ctx := context.Background()
-	ctx = log.With(ctx, slog.Make(sloghuman.Sink(io.Discard)))
+	ctx = log.With(ctx, slog.New(slog.NewTextHandler(io.Discard, nil)))
 
 	diagram, _, err := d2lib.Compile(ctx, b.String(), compileOpts, renderOpts)
 	if err != nil {
